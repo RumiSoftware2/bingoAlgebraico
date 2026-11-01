@@ -1,0 +1,25 @@
+.boton { min-height: 48px; padding: 11px 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 2px solid var(--ink); border-radius: 14px; font-weight: 800; line-height: 1.15; cursor: pointer; transition: transform var(--t-rapida), box-shadow var(--t-rapida), background var(--t-rapida); }
+.boton:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 0 rgba(30,42,74,.2); }
+.boton:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.boton:disabled { opacity: .52; cursor: not-allowed; }
+.boton--principal { background: var(--accent); color: var(--ink); }
+.boton--secundario { background: var(--surface); color: var(--ink); }
+.boton--peligro { background: var(--rose); color: var(--ink); }
+.boton--grande { min-height: 62px; padding: 16px 26px; font-size: 1.2rem; }
+.boton__icono, .chip-caso__icono { width: 1.3em; height: 1.3em; flex: 0 0 auto; }
+.tarjeta { border: var(--borde-grueso); border-radius: var(--radio-m); padding: clamp(16px, 1.5vw, 24px); box-shadow: var(--sombra); background: var(--surface); }
+.tarjeta--sky { background: var(--sky); } .tarjeta--mint { background: var(--mint); } .tarjeta--lavender { background: var(--lavender); } .tarjeta--peach { background: var(--peach); } .tarjeta--lemon { background: var(--lemon); }
+.tarjeta__titulo { display: flex; align-items: center; gap: 9px; margin: 0 0 14px; font-weight: 850; }
+.insignia { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--surface); color: var(--ink); font-weight: 750; white-space: nowrap; }
+.insignia svg { width: 1.15em; height: 1.15em; }
+.chip-caso { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; width: fit-content; padding: 7px 12px; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); font-size: .86rem; font-weight: 800; line-height: 1.15; }
+.chip-caso--factor-comun { background: var(--caso-factor-comun); } .chip-caso--diferencia-cuadrados { background: var(--caso-diferencia-cuadrados); }
+.chip-caso--trinomio-cuadrado-perfecto { background: var(--caso-trinomio-cuadrado-perfecto); } .chip-caso--trinomio-x2-bx-c { background: var(--caso-trinomio-x2-bx-c); }
+.chip-caso--trinomio-ax2-bx-c { background: var(--caso-trinomio-ax2-bx-c); } .chip-caso--agrupacion { background: var(--caso-agrupacion); }
+.chip-caso--compacto { padding: 5px 9px; font-size: .76rem; }
+.expresion { font-family: var(--fuente-mate); font-variant-numeric: lining-nums; color: var(--ink); white-space: nowrap; }
+.expresion--xl { font-size: clamp(3rem, 8.8vw, 9.5rem); line-height: 1.08; letter-spacing: -.045em; }
+.expresion--l { font-size: clamp(2rem, 4vw, 4rem); } .expresion--m { font-size: 1.25rem; } .expresion--s { font-size: .95rem; }
+.expresion__operador--espaciado { padding-inline: .22em; }
+.expresion sup { position: relative; top: -.25em; font-size: .52em; line-height: 0; vertical-align: baseline; }
+.icono-svg { display: block; width: 1.3em; height: 1.3em; }

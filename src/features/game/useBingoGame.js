@@ -43,6 +43,7 @@ export function useBingoGame(regla = REGLA_POR_DEFECTO) {
     dispatch({ tipo: 'NUEVA', semilla: nuevaSemilla() })
   }, [])
   const continuar = useCallback(() => dispatch({ tipo: 'CONTINUAR' }), [])
+  const cerrarCelebracion = useCallback(() => setCelebracion(null), [])
 
   useEffect(() => { guardar(CLAVE_PARTIDA, serializarPartida(estado, CTX)) }, [estado])
 
@@ -52,7 +53,7 @@ export function useBingoGame(regla = REGLA_POR_DEFECTO) {
     ejercicioActualId: resultado.ultimoId,
     hayGanadores, mazoAgotado, bloqueada,
     fase: estado.turno === 0 ? 'inicio' : bloqueada ? 'terminada' : 'en-curso',
-    celebracion, cerrarCelebracion: () => setCelebracion(null),
+    celebracion, cerrarCelebracion,
     sortear, nuevaPartida, continuar,
     descartarGuardado: () => borrar(CLAVE_PARTIDA),
   }

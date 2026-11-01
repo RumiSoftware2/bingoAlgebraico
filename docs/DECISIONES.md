@@ -26,3 +26,5 @@ Fecha de registro: 1 de noviembre de 2026. No hay respuestas previas del docente
 ## Calibraciones pendientes
 
 `MAX_SOLAPE` quedó calibrado en 17 en la Fase 3. En la muestra sin restricción (435 pares), el solape mínimo fue 2, el promedio 12,621, el percentil 95 fue 16 y el máximo observado 17. La semilla fija es `20260101`. En la simulación de 1000 partidas de la Fase 4, el primer ganador apareció en promedio en el turno 43,4 (mínimo 37, máximo 46). El máximo de la muestra fue menor que los 48 sorteos posibles; todos los cartones ganaron al agotar el mazo, por lo que la detección y la cobertura completa se confirman.
+
+La paleta de la Fase 5 cumple los objetivos del script de contraste: tinta sobre fondo 13,49:1; sobre pasteles 10,28–12,63:1; tinta sobre acento 7,41:1; texto suave sobre fondo 8,43:1.

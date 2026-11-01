@@ -35,10 +35,10 @@ const agrupacion = (e) => {
 
 export const CASOS = Object.freeze({
   'factor-comun': Object.freeze({ nombre: 'Factor común', color: 'caso-factor-comun', icono: 'factor', detectar: factorComun }),
-  'diferencia-cuadrados': Object.freeze({ nombre: 'Diferencia de cuadrados', color: 'caso-diferencia', icono: 'cuadrados', detectar: diferenciaCuadrados }),
-  'trinomio-cuadrado-perfecto': Object.freeze({ nombre: 'Trinomio cuadrado perfecto', color: 'caso-tcp', icono: 'cuadrado', detectar: tcp }),
-  'trinomio-x2-bx-c': Object.freeze({ nombre: 'Trinomio x² + bx + c', color: 'caso-trinomio', icono: 'trinomio', detectar: trinomioX2 }),
-  'trinomio-ax2-bx-c': Object.freeze({ nombre: 'Trinomio ax² + bx + c', color: 'caso-trinomio-avanzado', icono: 'trinomio', detectar: trinomioAX2 }),
+  'diferencia-cuadrados': Object.freeze({ nombre: 'Diferencia de cuadrados', color: 'caso-diferencia-cuadrados', icono: 'cuadrados', detectar: diferenciaCuadrados }),
+  'trinomio-cuadrado-perfecto': Object.freeze({ nombre: 'Trinomio cuadrado perfecto', color: 'caso-trinomio-cuadrado-perfecto', icono: 'cuadrado', detectar: tcp }),
+  'trinomio-x2-bx-c': Object.freeze({ nombre: 'Trinomio x² + bx + c', color: 'caso-trinomio-x2-bx-c', icono: 'trinomio', detectar: trinomioX2 }),
+  'trinomio-ax2-bx-c': Object.freeze({ nombre: 'Trinomio ax² + bx + c', color: 'caso-trinomio-ax2-bx-c', icono: 'trinomio', detectar: trinomioAX2 }),
   agrupacion: Object.freeze({ nombre: 'Agrupación', color: 'caso-agrupacion', icono: 'agrupacion', detectar: agrupacion }),
 })
 

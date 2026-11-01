@@ -10,6 +10,7 @@
     "test": "node --test",
     "cartones": "node scripts/generarCartones.mjs",
     "validar": "node scripts/validarTodo.mjs",
+    "contraste": "node scripts/contraste.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
