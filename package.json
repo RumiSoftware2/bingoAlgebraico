@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "test": "node --test",
     "cartones": "node scripts/generarCartones.mjs",
+    "validar": "node scripts/validarTodo.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

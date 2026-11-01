@@ -1,0 +1,5 @@
+export { crearRng, barajar, nuevaSemilla } from './rng.js'
+export { crearMazo } from './mazo.js'
+export { estadoInicial, reductor } from './reductor.js'
+export { reproducir, clasificar, calcularPodio, verificarCarton } from './reproducir.js'
+export { serializarPartida, restaurarPartida, CLAVE_PARTIDA } from './persistencia.js'
