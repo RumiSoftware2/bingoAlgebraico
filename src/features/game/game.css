@@ -22,6 +22,10 @@
 .ajuste-fila input[type="range"] + span { grid-column: 2; }
 .ajuste-fila--checks { display: flex; justify-content: flex-start; }
 .ajuste-fila--checks input { width: 20px; height: 20px; accent-color: #245A91; }
+.controles-audio { padding: 12px 0 4px; border-top: 1px solid var(--ink-suave); }
+.controles-audio button { min-height: 40px; margin: 0 0 12px; padding: 7px 12px; border: 2px solid var(--ink); border-radius: 10px; color: var(--ink); background: var(--surface); font: inherit; font-weight: 700; cursor: pointer; }
+.controles-audio button:focus-visible { outline: 3px solid #245A91; outline-offset: 2px; }
+.controles-audio [role="status"] { margin: 0 0 12px; color: var(--ink-suave); }
 .ayuda-ajustes { margin: 0; color: var(--ink-suave); font-size: .83rem; }
 .juego { width: 100%; min-height: 100dvh; padding: clamp(12px, 1.6vw, 28px); display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(300px, 1fr); grid-template-rows: auto 1fr auto; grid-template-areas: "enc enc" "main side" "verif verif"; align-items: start; gap: clamp(12px, 1.6vw, 28px); }
 .juego__encabezado { grid-area: enc; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 2px 4px 16px; border-bottom: 2px solid rgba(30,42,74,.18); }

@@ -1,35 +1,51 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useBingoGame } from './features/game/useBingoGame.js'
 import { PantallaInicio } from './features/game/PantallaInicio.jsx'
 import { PantallaJuego } from './features/game/PantallaJuego.jsx'
 import { useAjustes } from './features/settings/useAjustes.js'
 import { PanelAjustes } from './features/settings/PanelAjustes.jsx'
-import { Boton } from './ui-kit/Boton.jsx'
+import { CARTONES, VERSION_CARTONES } from './domain/cards/index.js'
+import { EJERCICIOS_POR_ID } from './domain/catalog/index.js'
+import { PaginaImpresion } from './features/print/PaginaImpresion.jsx'
+import { useAudio } from './features/audio/useAudio.js'
+import { efectos } from './features/audio/efectos.js'
+
+const ARCHIVO_MUSICA = `${import.meta.env.BASE_URL}audio/happy-happy-game-show.mp3`
 
 function App() {
   const juego = useBingoGame()
   const { ajustes, actualizar } = useAjustes()
+  const audio = useAudio({ archivo: ARCHIVO_MUSICA, volumen: ajustes.volumen, silenciado: ajustes.silenciado })
   const [pantalla, setPantalla] = useState('inicio')
-  const irAJuego = () => setPantalla('juego')
+  const sonido = useCallback((tipo) => {
+    if (!ajustes.efectos) return
+    efectos[tipo]?.(ajustes.volumen)
+  }, [ajustes.efectos, ajustes.volumen])
+  const iniciarJuego = () => { void audio.reproducir(); sonido('pitido'); setPantalla('juego') }
+  const continuarJuego = () => { void audio.reproducir(); setPantalla('juego') }
+  const nuevaPartida = () => { void audio.reproducir(); juego.nuevaPartida(); sonido('pitido'); setPantalla('juego') }
+  const sortear = () => { if (!juego.bloqueada) { sonido('sortear'); juego.sortear() } }
+  const celebrar = useCallback(() => sonido('victoria'), [sonido])
   const imprimir = () => setPantalla('imprimir')
 
   if (pantalla === 'inicio') return <PantallaInicio
     turno={juego.turno}
-    continuar={irAJuego}
-    comenzar={irAJuego}
-    nuevaPartida={() => { juego.nuevaPartida(); irAJuego() }}
+    continuar={continuarJuego}
+    comenzar={iniciarJuego}
+    nuevaPartida={nuevaPartida}
     imprimir={imprimir}
     ajustes={ajustes}
     actualizar={actualizar}
     PanelAjustes={PanelAjustes}
+    audio={audio}
   />
-  if (pantalla === 'imprimir') return <main className="pantalla-pendiente">
-    <span className="sobretitulo">Próxima etapa</span>
-    <h1>Impresión de cartones</h1>
-    <p>La vista de impresión se habilitará en la Fase 6.</p>
-    <Boton variante="principal" onClick={() => setPantalla(juego.turno > 0 ? 'juego' : 'inicio')}>Volver</Boton>
-  </main>
-  return <PantallaJuego juego={juego} ajustes={ajustes} actualizar={actualizar} imprimir={imprimir} volverInicio={() => setPantalla('inicio')} PanelAjustes={PanelAjustes} />
+  if (pantalla === 'imprimir') return <PaginaImpresion
+    cartones={CARTONES}
+    ejerciciosPorId={EJERCICIOS_POR_ID}
+    versionCartones={VERSION_CARTONES}
+    onVolver={() => setPantalla(juego.turno > 0 ? 'juego' : 'inicio')}
+  />
+  return <PantallaJuego juego={juego} ajustes={ajustes} actualizar={actualizar} imprimir={imprimir} volverInicio={() => setPantalla('inicio')} PanelAjustes={PanelAjustes} audio={audio} onSortear={sortear} onVictoria={celebrar} onNuevaPartida={() => { juego.nuevaPartida(); sonido('pitido') }} />
 }
 
 export default App

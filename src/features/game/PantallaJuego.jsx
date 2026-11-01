@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { calcularPodio } from '../../domain/engine/index.js'
 import { etiquetaCarton } from '../../domain/cards/index.js'
 import { Trofeo } from '../../ui-kit/iconos/Trofeo.jsx'
@@ -20,16 +20,26 @@ function Ganadores({ ganadores }) {
   </section>
 }
 
-export function PantallaJuego({ juego, ajustes, actualizar, imprimir, volverInicio, PanelAjustes }) {
+export function PantallaJuego({ juego, ajustes, actualizar, imprimir, volverInicio, PanelAjustes, audio, onSortear, onVictoria, onNuevaPartida }) {
   const [confirmarNueva, setConfirmarNueva] = useState(false)
   const [verificar, setVerificar] = useState(false)
   const cerrarCelebracion = juego.cerrarCelebracion
-  const iniciarPartidaNueva = juego.nuevaPartida
+  const iniciarPartidaNueva = onNuevaPartida ?? juego.nuevaPartida
   const continuarPartida = juego.continuar
   const cerrarConfirmacion = useCallback(() => setConfirmarNueva(false), [])
   const aceptarNueva = useCallback(() => { cerrarConfirmacion(); iniciarPartidaNueva() }, [cerrarConfirmacion, iniciarPartidaNueva])
   const solicitarNuevaDesdePodio = useCallback(() => { cerrarCelebracion(); setConfirmarNueva(true) }, [cerrarCelebracion])
   const continuar = useCallback(() => { cerrarCelebracion(); continuarPartida() }, [cerrarCelebracion, continuarPartida])
+  const sortear = onSortear ?? juego.sortear
+  const ultimaCelebrada = useRef(null)
+
+  useEffect(() => {
+    const turno = juego.celebracion?.turno
+    if (turno == null) { ultimaCelebrada.current = null; return }
+    if (ultimaCelebrada.current === turno) return
+    ultimaCelebrada.current = turno
+    onVictoria?.()
+  }, [juego.celebracion, onVictoria])
 
   useEffect(() => {
     const manejar = (e) => {
@@ -37,11 +47,11 @@ export function PantallaJuego({ juego, ajustes, actualizar, imprimir, volverInic
       if (e.code !== 'Space' && e.key !== 'Enter') return
       if (e.target.closest?.('input, textarea, select, button, a, [contenteditable="true"]')) return
       e.preventDefault()
-      juego.sortear()
+      sortear()
     }
     document.addEventListener('keydown', manejar)
     return () => document.removeEventListener('keydown', manejar)
-  }, [juego, confirmarNueva])
+  }, [juego, confirmarNueva, sortear])
 
   const ultimo = juego.resultado.ultimoId
   return <div className="juego">
@@ -49,14 +59,14 @@ export function PantallaJuego({ juego, ajustes, actualizar, imprimir, volverInic
     <header className="juego__encabezado">
       <button className="marca-liga" type="button" onClick={volverInicio} aria-label="Volver al inicio"><span className="marca-liga__balon">⚽</span><span><strong>LIGA DEL ÁLGEBRA</strong><small>Bingo de factorización</small></span></button>
       <Insignia icono={<span aria-hidden="true">◷</span>}>Ronda {juego.turno} de {juego.total}</Insignia>
-      <PanelAjustes ajustes={ajustes} actualizar={actualizar} />
+      <PanelAjustes ajustes={ajustes} actualizar={actualizar} audio={audio} />
     </header>
 
     <main className="juego__principal">
       <Marcador key={ultimo ?? 'inicio'} ejercicioId={ultimo} turno={juego.turno} total={juego.total} />
       <section className="juego__acciones" aria-label="Controles de la partida">
         {juego.fase === 'terminada' && juego.mazoAgotado && !juego.hayGanadores && <p className="aviso-fin">No quedan más polinomios.</p>}
-        <Boton variante="principal" grande disabled={juego.bloqueada} onClick={juego.sortear}>Sortear siguiente <span aria-hidden="true">→</span></Boton>
+        <Boton variante="principal" grande disabled={juego.bloqueada} onClick={sortear}>Sortear siguiente <span aria-hidden="true">→</span></Boton>
         {juego.hayGanadores && !juego.estado.continuar && <Boton variante="secundario" onClick={continuar}>Continuar para el 2.º puesto</Boton>}
         <Boton variante="secundario" onClick={() => setConfirmarNueva(true)}>Nueva partida</Boton>
         <Boton variante="secundario" onClick={() => setVerificar((v) => !v)}>{verificar ? 'Ocultar revisión' : 'Verificar cartón'}</Boton>
