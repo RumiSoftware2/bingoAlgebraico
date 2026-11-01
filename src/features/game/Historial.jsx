@@ -1,7 +1,6 @@
 import { CASOS, EJERCICIOS_POR_ID } from '../../domain/catalog/index.js'
 import { aTexto } from '../../domain/math/index.js'
-import { ChipCaso } from '../../ui-kit/index.js'
-import { Tarjeta } from '../../ui-kit/Tarjeta.jsx'
+import { ChipCaso, Tarjeta } from '../../ui-kit/index.js'
 
 export function Historial({ historial }) {
   const ids = [...historial].reverse()

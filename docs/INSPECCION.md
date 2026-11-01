@@ -1,49 +1,45 @@
 # Inspección del proyecto
 
-Fecha: 1 de noviembre de 2026
+Fecha de actualización: 1 de noviembre de 2026
 
-## Entorno real
+## Entorno y dependencias
 
-- Aplicación cliente con React 19.3.1 y JavaScript/JSX.
-- Vite 8.3.5 como servidor de desarrollo y empaquetador; configuración `vite.config.js` con el plugin oficial de React.
-- Proyecto ESM (`"type": "module"`). ESLint está configurado en `eslint.config.js`.
-- Scripts actuales: `npm run dev`, `npm run build`, `npm run lint` y `npm run preview`.
-- Node: v24.13.0. `node --test` está disponible y `crypto.getRandomValues` es global en este entorno.
-- No se encontraron dependencias de pruebas ni de interfaz adicionales. No instalar dependencias para este proyecto.
+- Aplicación cliente React 19.3.1 + JavaScript/JSX, empaquetada con Vite 8.3.5.
+- Node requerido por Vite: `^20.19.0 || >=22.12.0`. Versión usada en la revisión: v24.13.0.
+- Proyecto ESM. ESLint y `node:test` están configurados.
+- Sin backend, cuentas, telemetría ni dependencias nuevas para estas fases. Las dependencias runtime son React y React DOM; no se añadió librería de audio ni de pruebas.
+- El audio de música es un MP3 local licenciado; los efectos se sintetizan con Web Audio API.
 
 ## Estructura actual
 
-- Raíz: `package.json`, `package-lock.json`, `vite.config.js`, `eslint.config.js`, `index.html`, `README.md`, `public/`, `src/`.
-- `src/`: `App.jsx`, `App.css`, `index.css`, `main.jsx`, `assets/` (hero, React y Vite).
-- `public/`: sin archivos propios.
-- No hay carpeta `tests/`, documentación `docs/` ni módulos de dominio/features todavía.
-- Git está en la rama `main`, siguiendo `origin/main`; el árbol de trabajo estaba limpio al iniciar la inspección.
+- `src/domain/`: matemáticas, catálogo de 48 ejercicios, 30 cartones estáticos versionados, motor reproducible y reglas.
+- `src/ui-kit/`: tokens y componentes visuales, expresiones accesibles e iconos SVG propios.
+- `src/features/game/`: pantallas de inicio y juego, marcador, historial, posiciones, podio, verificación y hook de partida.
+- `src/features/print/`: selector, vista de impresión y CSS carta en blanco y negro.
+- `src/features/audio/`: reproductor local y efectos Web Audio sintetizados.
+- `src/features/settings/`: ajustes de animación/audio en `liga-algebra.ajustes.v1`.
+- `src/shared/almacenamiento.js`: acceso protegido a `localStorage`.
+- `public/audio/`: pista y su registro de licencia.
+- `scripts/`, `tests/` y `docs/`: generación/validación/contraste, pruebas nativas y documentación de fases/QA.
 
-## Estilos y punto de partida
+## Arquitectura y separación
 
-Los estilos son CSS global plano, importado desde `main.jsx`/`App.jsx`, con variables en `index.css`. El contenido es la pantalla de bienvenida predeterminada de Vite y React (contador y enlaces de documentación); aún no hay funcionalidad de Bingo Algebraico. La página HTML conserva idioma inglés, título de plantilla e icono `/favicon.svg`, que no existe en `public/`.
+- El dominio no importa React, `window` ni `document`, y no usa `Math.random`.
+- `math → catalog → cards`; `engine` recibe el mazo, cartones e implementación de regla desde la feature de juego; `rules` es independiente. La UI se compone desde `App.jsx`; features usan `ui-kit`, módulos públicos del dominio y `shared` según corresponda.
+- Persistencia de partida y ajustes se limita a dos claves locales con versión. No hay llamadas a un backend.
+- La ruta de audio se deriva de `import.meta.env.BASE_URL` y apunta a `public/audio/`; enlaces de Internet solo se muestran como crédito/licencia y se abren bajo acción explícita.
 
-## Diferencias frente a la estructura objetivo
+## Scripts disponibles
 
-La estructura de `src/` está por crear: `domain/{math,catalog,cards,engine,rules}`, `ui-kit`, `features/{game,print,audio,settings}` y `shared`. También se crearán `scripts/`, `tests/`, `docs/` y `public/audio/` conforme avancen las fases. Se conservarán React, Vite, scripts y configuración existentes, extendiéndolos solo cuando corresponda; no se moverán archivos existentes sin necesidad.
+- `npm run dev`: desarrollo con Vite.
+- `npm test`: 22 pruebas con `node --test`.
+- `npm run cartones`: genera cartones deterministas y reporta versión/métricas.
+- `npm run validar`: valida catálogo y cartones.
+- `npm run contraste`: verifica los umbrales WCAG documentados.
+- `npm run lint`, `npm run build`, `npm run preview`.
 
-## Verificación del servidor
+## Estado técnico revisado
 
-`npm run dev -- --host 127.0.0.1` inició correctamente con Vite y anunció `http://127.0.0.1:5173/`. Se detuvo el proceso tras verificar el arranque. No se cambió la configuración.
+En la sesión del 1 de noviembre de 2026, `npm test`, `npm run validar`, `npm run contraste`, `npm run lint` y `npm run build` pasaron. La regeneración de cartones conservó `C-da4284d4` y no cambió `src/domain/cards/cartones.data.js`. Informe detallado, incluidos los controles manuales pendientes, en `docs/QA.md`.
 
-## Riesgos y notas
-
-- El proyecto está en blanco funcionalmente; no existe lógica previa que integrar.
-- `index.html` y el contenido de plantilla están en inglés y deberán adaptarse al español al llegar a la fase de interfaz.
-- Vite puede servir el SVG de favicon predeterminado aunque el archivo no exista; se reemplazará o corregirá durante la implementación de interfaz.
-- Node cumple ampliamente el requisito mínimo de Node 18 y admite pruebas nativas con `node --test`.
-- No se validaron todavía matemáticas, interfaz, impresión ni audio: corresponden a fases posteriores.
-
-## Scripts que se añadirán
-
-- `npm test`: ejecutar la suite integrada con `node --test`.
-- `npm run cartones`: generar los 30 cartones reproducibles a partir de semilla fija.
-- `npm run validar`: validar catálogo y cartones.
-- `npm run contraste`: verificar el contraste de la paleta.
-
-Los scripts se incorporarán en las fases correspondientes, sin sustituir los scripts existentes.
+No se inspeccionó la app renderizada en navegador en esta sesión. Por eso permanecen pendientes la revisión visual, impresión física, reproducción real del audio, interacción de controles y partidas piloto; ver `docs/FASE-6.md`, `docs/FASE-7.md` y `docs/QA.md`.

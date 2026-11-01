@@ -1,8 +1,7 @@
 import { useMemo } from 'react'
 import { calcularPodio } from '../../domain/engine/index.js'
 import { etiquetaCarton } from '../../domain/cards/index.js'
-import { Boton } from '../../ui-kit/index.js'
-import { Trofeo } from '../../ui-kit/iconos/Trofeo.jsx'
+import { Boton, Trofeo } from '../../ui-kit/index.js'
 import { Dialogo } from './Dialogo.jsx'
 
 export function Podio({ celebracion, ganadores, continuar, onClose, solicitarNueva }) {

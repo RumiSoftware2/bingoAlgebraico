@@ -1,4 +1,4 @@
-import { contenido, grado, mcd } from '../math/polinomio.js'
+import { contenido, grado, mcd } from '../math/index.js'
 
 const esCuadrado = (n) => Number.isInteger(n) && n >= 0 && Number.isInteger(Math.sqrt(n))
 const raiz = (n) => Math.sqrt(n)

@@ -28,3 +28,9 @@ Fecha de registro: 1 de noviembre de 2026. No hay respuestas previas del docente
 `MAX_SOLAPE` quedó calibrado en 17 en la Fase 3. En la muestra sin restricción (435 pares), el solape mínimo fue 2, el promedio 12,621, el percentil 95 fue 16 y el máximo observado 17. La semilla fija es `20260101`. En la simulación de 1000 partidas de la Fase 4, el primer ganador apareció en promedio en el turno 43,4 (mínimo 37, máximo 46). El máximo de la muestra fue menor que los 48 sorteos posibles; todos los cartones ganaron al agotar el mazo, por lo que la detección y la cobertura completa se confirman.
 
 La paleta de la Fase 5 cumple los objetivos del script de contraste: tinta sobre fondo 13,49:1; sobre pasteles 10,28–12,63:1; tinta sobre acento 7,41:1; texto suave sobre fondo 8,43:1.
+
+## Decisiones complementarias de audio y QA
+
+- Música seleccionada: “Happy Happy Game Show” de Kevin MacLeod, CC BY 4.0, por su descripción oficial bouncy/humorous, tempo animado y duración de 2:39. Se da atribución exacta visible en Créditos. El archivo oficial se recodificó a 128 kb/s para reducir su tamaño a 2.54 MB, sin recorte ni mezcla; la transformación se informa en los créditos y en `public/audio/LICENCIAS.md`.
+- QA final: las verificaciones automatizadas pasan. Las pruebas de interfaz, navegador, proyector, audio real, impresión física y partidas piloto se mantienen como revisión humana pendiente y están desglosadas en `docs/QA.md`.
+- Responsable de decisiones: se aplicaron los valores por defecto de la guía; no hay valores adicionales confirmados por el docente en la conversación.

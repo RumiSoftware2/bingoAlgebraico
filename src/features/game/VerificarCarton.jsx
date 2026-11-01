@@ -3,7 +3,7 @@ import { CARTONES, etiquetaCarton } from '../../domain/cards/index.js'
 import { verificarCarton } from '../../domain/engine/index.js'
 import { EJERCICIOS_POR_ID } from '../../domain/catalog/index.js'
 import { factorizacionATexto } from '../../domain/math/index.js'
-import { Tarjeta } from '../../ui-kit/Tarjeta.jsx'
+import { Tarjeta } from '../../ui-kit/index.js'
 
 export function VerificarCarton({ marcas }) {
   const [numero, setNumero] = useState('01')

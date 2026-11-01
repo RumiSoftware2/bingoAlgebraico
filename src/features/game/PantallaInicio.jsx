@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { Balon } from '../../ui-kit/iconos/Balon.jsx'
-import { Silbato } from '../../ui-kit/iconos/Silbato.jsx'
-import { Boton, Insignia } from '../../ui-kit/index.js'
+import { Balon, Boton, Insignia, Silbato } from '../../ui-kit/index.js'
 import { Dialogo } from './Dialogo.jsx'
 
 export function PantallaInicio({ turno, continuar, comenzar, nuevaPartida, imprimir, ajustes, actualizar, PanelAjustes, audio }) {

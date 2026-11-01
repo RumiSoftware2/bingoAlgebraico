@@ -1,5 +1,4 @@
-import { aTexto, factorizacionATexto } from '../math/formato.js'
-import { claveDe, contenido, expandir, igual } from '../math/polinomio.js'
+import { aTexto, factorizacionATexto, claveDe, contenido, expandir, igual } from '../math/index.js'
 
 const esperados = { 'factor-comun': 8, 'diferencia-cuadrados': 8, 'trinomio-cuadrado-perfecto': 8, 'trinomio-x2-bx-c': 10, 'trinomio-ax2-bx-c': 8, agrupacion: 6 }
 const mismo = (a, b) => JSON.stringify(a) === JSON.stringify(b)

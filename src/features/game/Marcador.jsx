@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { EJERCICIOS_POR_ID } from '../../domain/catalog/index.js'
-import { CASOS } from '../../domain/catalog/casos.js'
+import { CASOS } from '../../domain/catalog/index.js'
 import { aTokens, factorizacionATokens } from '../../domain/math/index.js'
-import { Boton, ChipCaso, ExpresionMatematica } from '../../ui-kit/index.js'
-import { Tarjeta } from '../../ui-kit/Tarjeta.jsx'
+import { Boton, ChipCaso, ExpresionMatematica, Tarjeta } from '../../ui-kit/index.js'
 
 export function Marcador({ ejercicioId, turno, total }) {
   const [mostrarRespuesta, setMostrarRespuesta] = useState(false)

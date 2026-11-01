@@ -1,5 +1,5 @@
 import { EJERCICIOS } from './ejercicios.data.js'
-import { claveDe } from '../math/polinomio.js'
+import { claveDe } from '../math/index.js'
 export { CASOS } from './casos.js'
 export { EJERCICIOS } from './ejercicios.data.js'
 export { validarCatalogo } from './validarCatalogo.js'

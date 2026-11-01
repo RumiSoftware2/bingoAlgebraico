@@ -1,7 +1,6 @@
 import { clasificar } from '../../domain/engine/index.js'
 import { etiquetaCarton } from '../../domain/cards/index.js'
-import { Trofeo } from '../../ui-kit/iconos/Trofeo.jsx'
-import { Tarjeta } from '../../ui-kit/Tarjeta.jsx'
+import { Tarjeta, Trofeo } from '../../ui-kit/index.js'
 
 export function Posiciones({ resultado }) {
   const top = clasificar(resultado, 5)
