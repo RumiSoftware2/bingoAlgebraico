@@ -1,4 +1,5 @@
 import { EJERCICIOS } from './ejercicios.data.js'
+import { claveDe } from '../math/polinomio.js'
 export { CASOS } from './casos.js'
 export { EJERCICIOS } from './ejercicios.data.js'
 export { validarCatalogo } from './validarCatalogo.js'
@@ -8,7 +9,7 @@ export const IDS_EJERCICIOS = Object.freeze(EJERCICIOS.map((e) => e.id))
 export const VERSION_CATALOGO = 'cat-1'
 
 // SHA-1 pequeño y autocontenido para que el catálogo siga siendo compatible con Node y navegador.
-function sha1(texto) {
+export function hashSHA1(texto) {
   const data = Array.from(new TextEncoder().encode(texto)), bytes = data.length
   data.push(128)
   while (data.length % 64 !== 56) data.push(0)
@@ -32,5 +33,5 @@ function sha1(texto) {
 }
 
 export function huellaCatalogo() {
-  return sha1(EJERCICIOS.map(({ id, caso }) => id + ':' + caso).join('|'))
+  return hashSHA1(EJERCICIOS.map(({ id, polinomio }) => id + '|' + claveDe(polinomio)).join('|')).slice(0, 8)
 }

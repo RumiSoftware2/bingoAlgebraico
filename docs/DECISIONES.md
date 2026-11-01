@@ -25,4 +25,4 @@ Fecha de registro: 1 de noviembre de 2026. No hay respuestas previas del docente
 
 ## Calibraciones pendientes
 
-`MAX_SOLAPE` y el turno promedio del primer ganador se registrarán al generar y simular cartones en las fases 3 y 4. La guía no fija valores anticipados para estas métricas.
+`MAX_SOLAPE` quedó calibrado en 17 en la Fase 3. En la muestra sin restricción (435 pares), el solape mínimo fue 2, el promedio 12,621, el percentil 95 fue 16 y el máximo observado 17. La semilla fija es `20260101`. El turno promedio del primer ganador se medirá en la Fase 4.

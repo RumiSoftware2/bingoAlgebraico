@@ -8,7 +8,7 @@ test('catálogo completo, único y matemáticamente consistente', () => {
   assert.equal(EJERCICIOS.length, 48)
   assert.equal(IDS_EJERCICIOS.length, 48)
   assert.equal(EJERCICIOS_POR_ID.size, 48)
-  assert.match(huellaCatalogo(), /^[a-f0-9]{10}$/)
+  assert.match(huellaCatalogo(), /^[a-f0-9]{8}$/)
 })
 
 test('el validador rechaza signo, clasificación, primitivo, ambigüedad e id inválidos', () => {
