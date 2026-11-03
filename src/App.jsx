@@ -7,6 +7,7 @@ import { PanelAjustes } from './features/settings/PanelAjustes.jsx'
 import { CARTONES, VERSION_CARTONES } from './domain/cards/index.js'
 import { EJERCICIOS_POR_ID } from './domain/catalog/index.js'
 import { PaginaImpresion } from './features/print/PaginaImpresion.jsx'
+import { PaginaFichas } from './features/print/fichas/PaginaFichas.jsx'
 import { useAudio } from './features/audio/useAudio.js'
 import { efectos } from './features/audio/efectos.js'
 
@@ -27,6 +28,7 @@ function App() {
   const sortear = () => { if (!juego.bloqueada) { sonido('sortear'); juego.sortear() } }
   const celebrar = useCallback(() => sonido('victoria'), [sonido])
   const imprimir = () => setPantalla('imprimir')
+  const imprimirFichas = () => setPantalla('fichas')
 
   if (pantalla === 'inicio') return <PantallaInicio
     turno={juego.turno}
@@ -34,6 +36,7 @@ function App() {
     comenzar={iniciarJuego}
     nuevaPartida={nuevaPartida}
     imprimir={imprimir}
+    imprimirFichas={imprimirFichas}
     ajustes={ajustes}
     actualizar={actualizar}
     PanelAjustes={PanelAjustes}
@@ -45,6 +48,7 @@ function App() {
     versionCartones={VERSION_CARTONES}
     onVolver={() => setPantalla(juego.turno > 0 ? 'juego' : 'inicio')}
   />
+  if (pantalla === 'fichas') return <PaginaFichas onVolver={() => setPantalla('inicio')} />
   return <PantallaJuego juego={juego} ajustes={ajustes} actualizar={actualizar} imprimir={imprimir} volverInicio={() => setPantalla('inicio')} PanelAjustes={PanelAjustes} audio={audio} onSortear={sortear} onVictoria={celebrar} onNuevaPartida={() => { juego.nuevaPartida(); sonido('pitido') }} />
 }
 

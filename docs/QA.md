@@ -38,6 +38,7 @@ Estado de esta sesión: **pendientes de navegador**, no se marcan como realizada
 | Lectura desde proyector a 1920×1080 | Pendiente |
 | Ajuste a 1366×768, tableta y móvil | Pendiente |
 | Impresión de todos, rango e individual; papel real | Textos comprobados en pruebas; vista previa y papel pendiente (ver también `docs/FASE-6.md`) |
+| Fichas genéricas: 2 planchas de 25 con casillas del tamaño del cartón de 2 por página | Vista y estilos implementados; medición final en diálogo/impresión pendiente |
 | Animaciones reducidas y preferencia del sistema | Código de estilos presente; verificación visual pendiente |
 | Recorrido de teclado completo | Pendiente |
 

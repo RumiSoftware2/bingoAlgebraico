@@ -34,13 +34,14 @@ npm run build
 ## Usar en clase
 
 1. En **Imprimir cartones**, elige todos, uno o un rango y selecciona 1 o 2 cartones por página. La opción inicial es 2 por página.
-2. En el diálogo de impresión elige papel **Carta**, escala **100 %** y desactiva encabezados y pies del navegador. Imprime en blanco y negro.
-3. Proyecta la app y pulsa **¡Comenzar!**. Ese clic habilita la música, si está activada. También puedes continuar una partida guardada.
-4. Pulsa **Sortear siguiente**. El historial, la ronda y las posiciones se actualizan; cada polinomio aparece una vez por partida.
-5. **Mostrar respuesta** revela el caso, la factorización y una explicación. Úsalo como apoyo docente; la respuesta permanece oculta al inicio de cada turno.
-6. **Verificar cartón** permite revisar un cartón del 1 al 30 contra los polinomios sorteados.
-7. Al aparecer el podio se listan todos los cartones ganadores del mismo turno. Puedes cerrar, iniciar otra partida o continuar para buscar el siguiente puesto.
-8. En **Ajustes de pantalla y sonido** controla reproducción, volumen, silencio, efectos y animaciones. Las preferencias se guardan en este navegador.
+2. En el inicio también puedes abrir **Imprimir fichas genéricas**: prepara 50 fichas sin ejercicios, en dos planchas de 5×5, con el tamaño de las casillas del formato de 2 cartones por página. Recórtalas y colócalas sobre las casillas.
+3. En el diálogo de impresión elige papel **Carta**, escala **100 %** y desactiva encabezados y pies del navegador. Imprime los cartones en blanco y negro; activa gráficos de fondo para conservar los colores de las fichas.
+4. Proyecta la app y pulsa **¡Comenzar!**. Ese clic habilita la música, si está activada. También puedes continuar una partida guardada.
+5. Pulsa **Sortear siguiente**. El historial, la ronda y las posiciones se actualizan; cada polinomio aparece una vez por partida.
+6. **Mostrar respuesta** revela el caso, la factorización y una explicación. Úsalo como apoyo docente; la respuesta permanece oculta al inicio de cada turno.
+7. **Verificar cartón** permite revisar un cartón del 1 al 30 contra los polinomios sorteados.
+8. Al aparecer el podio se listan todos los cartones ganadores del mismo turno. Puedes cerrar, iniciar otra partida o continuar para buscar el siguiente puesto.
+9. En **Ajustes de pantalla y sonido** controla reproducción, volumen, silencio, efectos y animaciones. Las preferencias se guardan en este navegador.
 
 El avance de la partida también se guarda localmente en el navegador. No se sincroniza entre equipos.
 

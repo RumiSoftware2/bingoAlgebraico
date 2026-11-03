@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Balon, Boton, Insignia, Silbato } from '../../ui-kit/index.js'
 import { Dialogo } from './Dialogo.jsx'
 
-export function PantallaInicio({ turno, continuar, comenzar, nuevaPartida, imprimir, ajustes, actualizar, PanelAjustes, audio }) {
+export function PantallaInicio({ turno, continuar, comenzar, nuevaPartida, imprimir, imprimirFichas, ajustes, actualizar, PanelAjustes, audio }) {
   const [confirmarNueva, setConfirmarNueva] = useState(false)
   const aceptarNueva = () => { setConfirmarNueva(false); nuevaPartida() }
   const guardada = turno > 0
@@ -22,7 +22,10 @@ export function PantallaInicio({ turno, continuar, comenzar, nuevaPartida, impri
           <Boton variante="secundario" onClick={() => setConfirmarNueva(true)}>Nueva partida</Boton>
         </> : <Boton variante="principal" grande icono={<Silbato />} onClick={comenzar}>¡Comenzar!</Boton>}
       </div>
-      <button className="enlace-boton" type="button" onClick={imprimir}>Imprimir cartones</button>
+      <div className="inicio__impresiones">
+        <button className="enlace-boton" type="button" onClick={imprimir}>Imprimir cartones</button>
+        <button className="enlace-boton" type="button" onClick={imprimirFichas}>Imprimir fichas genéricas</button>
+      </div>
     </section>
     <footer className="inicio__pie"><span>Matemáticas en equipo, jugada a jugada.</span><button className="enlace-boton" type="button" onClick={() => document.getElementById('creditos-inicio')?.showModal()}>Créditos</button></footer>
     <dialog id="creditos-inicio" className="dialogo-creditos"><h2>Créditos</h2><p>Aplicación educativa Liga del Álgebra.</p><h3>Música</h3><p>“Happy Happy Game Show”, Kevin MacLeod (incompetech.com). <a href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600006" target="_blank" rel="noreferrer">Página oficial de la pista</a>.</p><p>Licensed under Creative Commons: By Attribution 4.0 License · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p><p>“Happy Happy Game Show” Kevin MacLeod (incompetech.com)<br />Licensed under Creative Commons: By Attribution 4.0 License<br />http://creativecommons.org/licenses/by/4.0/</p><p>Archivo recodificado a 128 kb/s; sin recorte ni mezcla.</p><button onClick={() => document.getElementById('creditos-inicio')?.close()}>Cerrar</button></dialog>
